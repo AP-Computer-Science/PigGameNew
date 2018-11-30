@@ -24,5 +24,10 @@ public class DoubleSixEvent extends GameEvent {
     public boolean shouldBeCalled(GameEngine game) {
         return game.getCurrentPlayerDiceValue1() == 6 && game.getCurrentPlayerDiceValue2() == 6;
     }
+
+    @Override
+    public void init() {
+
+    }
     
 }

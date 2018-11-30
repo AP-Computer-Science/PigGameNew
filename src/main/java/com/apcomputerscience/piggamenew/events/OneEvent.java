@@ -21,4 +21,9 @@ public class OneEvent extends GameEvent {
     public boolean shouldBeCalled(GameEngine game) {
         return game.getCurrentPlayerDiceValue1() == 1 || game.getCurrentPlayerDiceValue2() == 1;
     }
+
+    @Override
+    public void init() {
+
+    }
 }

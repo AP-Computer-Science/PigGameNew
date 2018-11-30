@@ -23,4 +23,9 @@ public class SumReduceEvent extends GameEvent{
     public boolean shouldBeCalled(GameEngine game) {
         return game.getCurrentPlayerDieSum() >= max;
     }
+
+    @Override
+    public void init() {
+
+    }
 }

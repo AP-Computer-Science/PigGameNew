@@ -23,4 +23,9 @@ public class WinConditionEvent extends GameEvent{
     public boolean shouldBeCalled(GameEngine game) {
         return game.getCurrentPlayerScore() >= max;
     }
+
+    @Override
+    public void init() {
+
+    }
 }

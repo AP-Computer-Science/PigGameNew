@@ -23,4 +23,8 @@ public class ComputerPlayer extends Player {
             op.contueRoll();
         }
     }
+    @Subscribe
+    public void laughAtOtherPlayers(com.apcomputerscience.piggamenew.events.eventBusEvents.SnakeEyeEventBusEvent e) {
+        
+    }
 }

@@ -19,6 +19,7 @@ public abstract class GameEvent {
     }
     public abstract void CallEvent(GameEngine game);
     public abstract boolean shouldBeCalled(GameEngine game);
+    public abstract void init();
     public static boolean shouldEndTasks() {
         return endTasks;
     }
