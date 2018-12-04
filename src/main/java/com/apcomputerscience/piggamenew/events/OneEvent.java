@@ -13,7 +13,8 @@ public class OneEvent extends GameEvent {
     }
     @Override
     public void CallEvent(GameEngine game) {
-        writer.println(game.getPlayerCurrentName() + " rolled a one. He skips his turn.");
+        writer.println(game.getPlayerCurrentName() + " rolled a one. He skips his turn and lost " + game.getCurrentPlayerDieSum() + " points.");
+        game.revertChanges();
         game.startNextTurn();
     }
 

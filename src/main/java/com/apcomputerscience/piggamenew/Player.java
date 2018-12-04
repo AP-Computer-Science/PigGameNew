@@ -32,6 +32,9 @@ public class Player {
     public void setScore(int s) {
         score = s;
     }
+    public void decreaseScore(int s) {
+        score -= s;
+    }
     public void addScore(int s) {
         score += s;
     }

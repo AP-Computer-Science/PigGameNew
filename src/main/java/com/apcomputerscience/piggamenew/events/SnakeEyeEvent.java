@@ -14,8 +14,8 @@ public class SnakeEyeEvent extends GameEvent{
     @Override
     public void CallEvent(GameEngine game) {
         writer.println(game.getPlayerCurrentName() + " rolled snake eyes. He loses all his points.");
-        game.getEventBus().post(new com.apcomputerscience.piggamenew.events.eventBusEvents.SnakeEyeEventBusEvent(game.getPlayerCurrentName()));
         game.setCurrentPlayerScore(0);
+        game.startNextTurn();
     }
 
     @Override

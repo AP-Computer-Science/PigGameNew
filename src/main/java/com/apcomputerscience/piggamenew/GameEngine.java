@@ -1,7 +1,8 @@
 package com.apcomputerscience.piggamenew;
 
 import java.util.ArrayList;
-import com.google.common.eventbus.EventBus;
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.Ansi.Color;
 
 public class GameEngine {
     public static GameEngine Current;
@@ -9,7 +10,6 @@ public class GameEngine {
     private final IGameWriter writer;
     private final ArrayList<Player> players;
     private final ArrayList<GameEvent> events;
-    private final EventBus eventBus;
     private int numOfPlayers;
     private int playerPositionIndex = -1;
     private int currentDieSum = 0;
@@ -19,7 +19,6 @@ public class GameEngine {
     public GameEngine(IGameWriter w, IPlayerOperation po) {
         this.state = GameState.Stopped;
         players = new ArrayList<Player>();
-        eventBus = new EventBus();
         events = new ArrayList<GameEvent>();
         writer = w;
         playOp = po;
@@ -34,16 +33,13 @@ public class GameEngine {
     public void addGameEvent(GameEvent e) {
         events.add(e);
     }
-    public EventBus getEventBus() {
-        return eventBus;
-    }
     public GameState getState() {
         return state;
     }
     public void start() {
         state = GameState.Running;
         events.forEach(e -> e.init());
-        writer.println("Welcome to Pig!");
+        writer.println(Ansi.ansi().fg(Color.GREEN).a("Welcome to Pig!"));
         writer.println("We have " + numOfPlayers + " fabulous players playing!");
         writer.println("The players playing are");
         for(int i = 0; i < players.size(); i++) {
@@ -83,6 +79,15 @@ public class GameEngine {
         currentDieSum += currentPlayer.getDie1Value() + currentPlayer.getDie2Value();
         currentPlayer.addScore(currentPlayer.getDie1Value() + currentPlayer.getDie2Value());
         writer.println(currentPlayer.getPlayerName() + " rolled. " + currentPlayer.getDie1Value() + ":" + currentPlayer.getDie2Value());
+    }
+    public void revertChanges() {
+        //Make sure to not create a negative score.
+        if(currentPlayer.getScore() < currentDieSum) {
+            currentPlayer.setScore(0);
+        }
+        else {
+            currentPlayer.decreaseScore(currentDieSum);
+        }
     }
     public void checkEvents() {
         if(state != GameState.Running) {

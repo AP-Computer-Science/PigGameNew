@@ -16,15 +16,11 @@ public class ComputerPlayer extends Player {
             } catch (InterruptedException ex) {
                 //Do nothing
             }
-            if((Math.random() * 5) == 1 && GameEngine.Current.getCurrentPlayerDieSum() > 10) {
+            if((int)(Math.random() * 5) == 1 && GameEngine.Current.getCurrentPlayerDieSum() > 10) {
                 op.stop();
                 return;
             }
             op.contueRoll();
         }
-    }
-    @Subscribe
-    public void laughAtOtherPlayers(com.apcomputerscience.piggamenew.events.eventBusEvents.SnakeEyeEventBusEvent e) {
-        
     }
 }
