@@ -3,6 +3,7 @@ package com.apcomputerscience.piggamenew.events;
 import com.apcomputerscience.piggamenew.GameEngine;
 import com.apcomputerscience.piggamenew.GameEvent;
 import com.apcomputerscience.piggamenew.IGameWriter;
+import org.fusesource.jansi.Ansi;
 
 public class OneEvent extends GameEvent {
     public static final String NAME = "OneEvent";
@@ -13,7 +14,7 @@ public class OneEvent extends GameEvent {
     }
     @Override
     public void CallEvent(GameEngine game) {
-        writer.println(game.getPlayerCurrentName() + " rolled a one. He skips his turn and lost " + game.getCurrentPlayerDieSum() + " points.");
+        writer.println(Ansi.ansi().fg(Ansi.Color.YELLOW).a(game.getPlayerCurrentName() + " rolled a one. He skips his turn and lost " + game.getCurrentPlayerDieSum() + " points.").reset());
         game.revertChanges();
         game.startNextTurn();
     }

@@ -1,8 +1,8 @@
 package com.apcomputerscience.piggamenew;
-
-import java.util.ArrayList;
+import org.fusesource.jansi.AnsiConsole;
 import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.Ansi.Color;
+import java.util.ArrayList;
+import static org.fusesource.jansi.Ansi.Color.GREEN;
 
 public class GameEngine {
     public static GameEngine Current;
@@ -39,7 +39,6 @@ public class GameEngine {
     public void start() {
         state = GameState.Running;
         events.forEach(e -> e.init());
-        writer.println(Ansi.ansi().fg(Color.GREEN).a("Welcome to Pig!"));
         writer.println("We have " + numOfPlayers + " fabulous players playing!");
         writer.println("The players playing are");
         for(int i = 0; i < players.size(); i++) {
@@ -71,7 +70,7 @@ public class GameEngine {
         }
         currentPlayer = players.get(playerPositionIndex);
         currentPlayer.setActive(true);
-        writer.println(currentPlayer.getPlayerName() + "'s turn.");
+        writer.println(Ansi.ansi().fg(GREEN).a(currentPlayer.getPlayerName() + "'s turn.").reset());
         currentPlayer.play(playOp);
     }
     public void currentPlayerRoll() {

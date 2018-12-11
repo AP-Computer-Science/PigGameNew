@@ -2,6 +2,7 @@ package com.apcomputerscience.piggamenew.events;
 import com.apcomputerscience.piggamenew.GameEngine;
 import com.apcomputerscience.piggamenew.GameEvent;
 import com.apcomputerscience.piggamenew.IGameWriter;
+import org.fusesource.jansi.Ansi;
 
 public class SnakeEyeEvent extends GameEvent{
 
@@ -13,7 +14,7 @@ public class SnakeEyeEvent extends GameEvent{
     }
     @Override
     public void CallEvent(GameEngine game) {
-        writer.println(game.getPlayerCurrentName() + " rolled snake eyes. He loses all his points.");
+        writer.println(Ansi.ansi().fg(Ansi.Color.RED).a(game.getPlayerCurrentName() + " rolled snake eyes. He loses all his points.").reset());
         game.setCurrentPlayerScore(0);
         game.startNextTurn();
     }

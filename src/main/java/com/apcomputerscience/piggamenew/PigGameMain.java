@@ -6,6 +6,7 @@ import com.apcomputerscience.piggamenew.events.OneEvent;
 import com.apcomputerscience.piggamenew.events.SnakeEyeEvent;
 import com.apcomputerscience.piggamenew.events.DoubleSixEvent;
 import org.fusesource.jansi.AnsiConsole;
+import org.fusesource.jansi.Ansi;
 
 public class PigGameMain {
 
@@ -15,9 +16,9 @@ public class PigGameMain {
         String name = writer.askLine("What is your name, human? ");
         String computerName = writer.askLine("What is the computer's name? ");
         GameEngine.Current = new GameEngine(writer, new StandordPlayerOperations(writer));
-        GameEngine.Current.addPlayer(new Player(name, writer));
+        GameEngine.Current.addPlayer(new ComputerPlayer(name, writer));
         GameEngine.Current.addPlayer(new ComputerPlayer(computerName, writer));
-        //GameEngine.Current.addPlayer(new ComputerPlayer("Sam Tupy", writer));
+        GameEngine.Current.addPlayer(new ComputerPlayer("Sam Tupy", writer));
         //GameEngine.Current.addPlayer(new ComputerPlayer("Dave Johnson", writer));
         //GameEngine.Current.addPlayer(new ComputerPlayer("Old Joe", writer));
         //GameEngine.Current.addPlayer(new ComputerPlayer("Steven Wonders", writer));
